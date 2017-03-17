@@ -1,77 +1,30 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "frozor-websocket",
-        "scope": null,
-        "escapedName": "frozor-websocket",
-        "name": "frozor-websocket",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
-      "C:\\bots\\node\\Frozor-Slack"
-    ]
-  ],
-  "_from": "frozor-websocket@latest",
-  "_id": "frozor-websocket@0.0.1",
-  "_inCache": true,
-  "_location": "/frozor-websocket",
-  "_nodeVersion": "6.0.0",
-  "_npmOperationalInternal": {
-    "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/frozor-websocket-0.0.1.tgz_1479736180521_0.7514282641932368"
-  },
-  "_npmUser": {
-    "name": "arcticzeroo",
-    "email": "spencer@artix.cc"
-  },
-  "_npmVersion": "3.8.6",
-  "_phantomChildren": {},
-  "_requested": {
-    "raw": "frozor-websocket",
-    "scope": null,
-    "escapedName": "frozor-websocket",
-    "name": "frozor-websocket",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/frozor-websocket/-/frozor-websocket-0.0.1.tgz",
-  "_shasum": "b30c2556713550b41750d4e5abc75dfa7b037bbd",
-  "_shrinkwrap": null,
-  "_spec": "frozor-websocket",
-  "_where": "C:\\bots\\node\\Frozor-Slack",
-  "author": "",
-  "dependencies": {
-    "frozor-logger": "^3.0.11",
-    "request": "^2.78.0",
-    "websocket": "^1.0.23"
-  },
-  "description": "",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "b30c2556713550b41750d4e5abc75dfa7b037bbd",
-    "tarball": "https://registry.npmjs.org/frozor-websocket/-/frozor-websocket-0.0.1.tgz"
-  },
-  "license": "ISC",
-  "main": "index.js",
-  "maintainers": [
-    {
-      "name": "arcticzeroo",
-      "email": "spencer@artix.cc"
-    }
-  ],
   "name": "frozor-websocket",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "1.1.0",
+  "description": "A websocket that automatically reconnects, emits events, logs",
+  "main": "ReconnectingWebsocket.js",
+  "dependencies": {
+    "frozor-logger": "^3.0.x",
+    "websocket": "^1.0.x"
   },
-  "version": "0.0.5"
+  "devDependencies": {},
+  "scripts": {
+    "test": "socket-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcticZeroo/frozor-websocket.git"
+  },
+  "keywords": [
+    "websocket",
+    "frozor",
+    "reconnecting",
+    "websocket"
+  ],
+  "author": "ArcticZeroo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArcticZeroo/frozor-websocket/issues"
+  },
+  "homepage": "https://github.com/ArcticZeroo/frozor-websocket#readme"
 }
