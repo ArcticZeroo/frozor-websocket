@@ -19,7 +19,7 @@ class ReconnectingWebsocket extends EventEmitter{
     constructor(options = {}){
         super();
         this.options     = options;
-        this.log         = new Logger(this.options.prefix);
+        this.log         = new Logger(this.options.prefix||'WEBSOCKET', 'websocket');
         this.name        = this.options.name;
         this.socket      = new WebSocketClient();
         this.isConnected = false;
