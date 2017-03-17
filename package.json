@@ -48,7 +48,7 @@
   "_where": "C:\\bots\\node\\Frozor-Slack",
   "author": "",
   "dependencies": {
-    "frozor-logger": "^2.0.0",
+    "frozor-logger": "^3.0.11",
     "request": "^2.78.0",
     "websocket": "^1.0.23"
   },
