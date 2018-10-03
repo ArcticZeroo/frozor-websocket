@@ -4,8 +4,8 @@
   "description": "A websocket that automatically reconnects, emits events, logs",
   "main": "ReconnectingWebsocket.js",
   "dependencies": {
-    "frozor-logger": "^3.0.x",
-    "websocket": "^1.0.x"
+    "frozor-logger": "^3.x.x",
+    "websocket": "^1.x.x"
   },
   "devDependencies": {},
   "scripts": {

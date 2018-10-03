@@ -1,9 +1,9 @@
-var Logger          = require('frozor-logger');
+const Logger = require('frozor-logger');
 
-var EventEmitter    = require('events');
-var WebSocketClient = require('websocket').client;
+const EventEmitter = require('events');
+const { client: WebSocketClient } = require('websocket');
 
-var StatusType = {
+const StatusType = {
     RECONNECTING  : 'STATUS_RECONNECTING',
     CONNECTFAILED : 'STATUS_CONNECTFAILED',
     ERROR         : 'STATUS_CONNECTERROR',
@@ -16,16 +16,16 @@ var StatusType = {
 };
 
 class ReconnectingWebsocket extends EventEmitter{
-    constructor(options = {}){
+    constructor(options = {}) {
         super();
         this.options     = options;
-        this.log         = new Logger(this.options.prefix||'WEBSOCKET', 'websocket');
+        this.log         = new Logger(this.options.prefix || 'WEBSOCKET', 'websocket');
         this.name        = this.options.name;
         this.socket      = new WebSocketClient();
         this.isConnected = false;
         this.connection  = null;
 
-        this.socket.on('connect', (connection)=>{
+        this.socket.on('connect', (connection) => {
             //Set these variables in case I need them once connected is emitted
             this.isConnected = true;
             this.connection  = connection;
@@ -36,9 +36,9 @@ class ReconnectingWebsocket extends EventEmitter{
             //Emit the connected event!
             this.emit('connected');
 
-            connection.on('message', (message)=>{
+            connection.on('message', (message) => {
                 //If it's not UTF8 run away
-                if(message.type != 'utf8') return;
+                if(message.type !== 'utf8') return;
 
                 //Set it to the UTF8 Data, who cares about the rest!
                 message = message.utf8Data;
@@ -48,7 +48,7 @@ class ReconnectingWebsocket extends EventEmitter{
                 this.emit('message', message);
             });
 
-            connection.on('error', (error)=>{
+            connection.on('error', (error) => {
                 this.log.error(`Error in connection to ${this.getSocketName()}: ${this.log.chalk.red(error)}`);
                 this.isConnected = false;
 
@@ -57,7 +57,7 @@ class ReconnectingWebsocket extends EventEmitter{
                 this.disconnected();
             });
 
-            connection.on('close', (code, description)=>{
+            connection.on('close', (code, description) => {
                 this.log.warn(`Connection to ${this.getSocketName()} closed.`);
                 this.isConnected = false;
 
@@ -66,7 +66,7 @@ class ReconnectingWebsocket extends EventEmitter{
                 this.disconnected();
             });
 
-            connection.on('connectFailed', ()=>{
+            connection.on('connectFailed', () => {
                 this.log.warn(`Unable to connect to the ${this.getSocketName()} socket.`);
                 this.isConnected = false;
 
@@ -82,7 +82,9 @@ class ReconnectingWebsocket extends EventEmitter{
     }
 
     disconnected(){
-        if(this.options.reconnect) this.resetConnectionDelay(10*1000, connection);
+        if (this.options.reconnect) {
+            this.resetConnectionDelay(10*1000, connection);
+        }
     }
 
     resetConnectionDelay(delay, connection){
@@ -93,7 +95,11 @@ class ReconnectingWebsocket extends EventEmitter{
 
     resetConnectionImmediate(connection){
         this.log.warn(this.log.chalk.magenta(`Resetting ${this.getSocketName()} connection...`));
-        if(connection) connection.drop();
+
+        if (connection) {
+            connection.drop();
+        }
+
         this.connect(this.options.reconnect_url || undefined);
     }
 
@@ -104,19 +110,25 @@ class ReconnectingWebsocket extends EventEmitter{
         this.isConnected = false;
         this.socket.connect(this.options.url);
 
-        setTimeout(()=>{
-            if(!this.isConnected) this.resetConnectionImmediate();
+        setTimeout(() => {
+            if (!this.isConnected) {
+                this.resetConnectionImmediate();
+            }
         }, 15*1000);
     }
 
     sendJSON(json){
-        if(!this.connection) return this.log.debug(this.connection);
+        if (!this.connection) {
+            return this.log.debug(this.connection);
+        }
 
         this.connection.sendUTF(JSON.stringify(json));
     }
 
     sendText(text){
-        if(!this.connection) return this.log.debug(this.connection);
+        if (!this.connection) {
+            return this.log.debug(this.connection);
+        }
 
         this.connection.sendUTF(text);
     }
